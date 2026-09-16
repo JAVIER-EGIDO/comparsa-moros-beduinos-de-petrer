@@ -193,6 +193,8 @@
     line-height:.98; margin-top:.3em; letter-spacing:-.01em;
   }
   .hero .lede{ color:#E9E1CC; margin-top:.9em; font-size:1.1rem; max-width:56ch; }
+  .hero-dates{ display:flex; align-items:center; gap:.6em; margin-top:1.3em; font-family:'Oswald', sans-serif; font-weight:500; font-size:.86rem; letter-spacing:.03em; color:var(--linen); }
+  .hero-dates svg{ width:17px; height:17px; flex:none; color:#E9C888; }
   .hero-actions{ margin-top:1.9em; display:flex; gap:14px; flex-wrap:wrap; }
   .hero-anim{ animation:hero-rise .8s cubic-bezier(.2,.7,.2,1) both; }
   @keyframes hero-rise{ from{ opacity:.5; transform:translateY(14px);} to{ opacity:1; transform:translateY(0);} }
@@ -236,6 +238,12 @@
     .patron-panel{ grid-template-columns:1fr; text-align:center; padding:32px 24px; }
     .patron-panel > div{ display:flex; flex-direction:column; align-items:center; }
   }
+  .patron-timeline{ list-style:none; margin:22px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .patron-timeline li{ border:1px solid var(--border); border-radius:6px; padding:20px; background:var(--linen); }
+  .pt-day{ font-family:'Oswald',sans-serif; font-weight:500; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); display:block; margin-bottom:.5em; }
+  .patron-timeline h3{ font-size:.98rem; }
+  .patron-timeline p{ color:var(--ink-soft); font-size:.86rem; margin-top:.4em; }
+  @media (max-width:760px){ .patron-timeline{ grid-template-columns:1fr; } }
 
   /* ---------- card grids (junta / filaes) ---------- */
   .card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
@@ -416,6 +424,7 @@
           <p class="eyebrow hero-eyebrow">Comparsa Moros Beduinos · Fiestas de Moros y Cristianos de Petrer</p>
           <h1>Beduinos</h1>
           <p class="lede">Hijos del desierto y de la caravana. Cada fiesta vestimos de azul, rojo y blanco para recorrer las calles de Petrer con el mismo orgullo transhumante que llevamos en el escudo.</p>
+          <div class="hero-dates"><svg><use href="#icon-calendar"></use></svg>De jueves a lunes, en torno al 14 de mayo · Sant Bonifaci</div>
           <div class="hero-actions">
             <a class="btn btn-solid" href="#calendario">Ver el calendario</a>
             <a class="btn btn-ghost" href="#mercadillo">Mercadillo de trajes</a>
@@ -464,10 +473,15 @@
       <div class="patron-panel">
         <div class="patron-flame"><svg><use href="#icon-candle"></use></svg></div>
         <div>
-          <span class="patron-name">Nombre del patrón o patrona<span class="patron-role eyebrow">Patrón de la comparsa</span></span>
-          <p>Cada año le acompañamos en la ofrenda de flores y en la procesión que abre las fiestas, con el mismo respeto con el que se lleva un estandarte en el desfile. Es la otra cara de la comparsa: la fiesta también es devoción, y toda filà se para a rendirle homenaje antes de salir a la calle.</p>
+          <span class="patron-name">Sant Bonifaci<span class="patron-role eyebrow">Patrón de Petrer · 14 de mayo</span></span>
+          <p>Nuestras fiestas van de jueves a lunes y casi siempre coinciden con su día, el 14 de mayo. El viernes bajamos a Sant Bonifaci desde su ermita, en lo alto de Petrer, y lo acompañamos por las calles del pueblo hasta la Iglesia de Sant Bartolomé, donde permanece mientras dura la fiesta. El lunes se cierra el círculo: vuelve a subir a su ermita, esta vez con alardo y acompañamiento de toda la fiesta.</p>
         </div>
       </div>
+      <ol class="patron-timeline">
+        <li><span class="pt-day">Viernes</span><h3>Bajada</h3><p>Sant Bonifaci baja desde su ermita hasta la Iglesia de Sant Bartolomé, acompañado por las calles de Petrer.</p></li>
+        <li><span class="pt-day">Sábado y domingo</span><h3>En Sant Bartolomé</h3><p>Permanece en la iglesia durante el resto de las fiestas.</p></li>
+        <li><span class="pt-day">Lunes</span><h3>Subida</h3><p>Vuelve a su ermita con alardo y acompañamiento, cerrando las fiestas.</p></li>
+      </ol>
     </div>
   </section>
 
