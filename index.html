@@ -1,0 +1,712 @@
+<title>Comparsa Beduinos de Petrer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
+
+  :root{
+    --sand:#EFE2C6;
+    --sand-2:#E1CFA3;
+    --sand-3:#D6BE8B;
+    --ink:#251E13;
+    --ink-soft:#5C4F38;
+    --blue:#1B3A66;
+    --blue-deep:#122A4C;
+    --red:#9C2B2B;
+    --red-deep:#7C2020;
+    --linen:#FBF5E6;
+    --border:rgba(37,30,19,.16);
+    --shadow:rgba(37,30,19,.24);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --sand:#16110A;
+      --sand-2:#221A10;
+      --sand-3:#2E2415;
+      --ink:#F3E7CC;
+      --ink-soft:#C9B98F;
+      --blue:#5580BD;
+      --blue-deep:#3D628F;
+      --red:#D0645D;
+      --red-deep:#B04C46;
+      --linen:#241C11;
+      --border:rgba(243,231,204,.16);
+      --shadow:rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --sand:#16110A;
+    --sand-2:#221A10;
+    --sand-3:#2E2415;
+    --ink:#F3E7CC;
+    --ink-soft:#C9B98F;
+    --blue:#5580BD;
+    --blue-deep:#3D628F;
+    --red:#D0645D;
+    --red-deep:#B04C46;
+    --linen:#241C11;
+    --border:rgba(243,231,204,.16);
+    --shadow:rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Karla', system-ui, sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    padding-inline:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:1140px; margin-inline:auto;}
+  .eyebrow{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:.74rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--red);
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    text-wrap:balance;
+    margin:0;
+    color:var(--ink);
+    font-weight:600;
+  }
+  h2{font-size:clamp(1.7rem, 1.2rem + 2vw, 2.5rem); letter-spacing:.005em;}
+  h3{font-size:1.12rem; font-weight:600;}
+  p{margin:0;}
+  .lede{max-width:62ch;}
+  .btn{
+    display:inline-flex; align-items:center; gap:.5em;
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:.86rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:.9em 1.6em;
+    border-radius:2px;
+    text-decoration:none;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .btn:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--red);
+    outline-offset:3px;
+  }
+  .btn svg{ width:16px; height:16px; }
+  .btn-solid{
+    background:var(--red);
+    color:var(--linen);
+    box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 10px 22px -12px var(--shadow);
+  }
+  .btn-solid:hover{ transform:translateY(-1px); background:var(--red-deep); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--linen);
+    border-color:rgba(251,245,230,.55);
+  }
+  .btn-ghost:hover{ background:rgba(251,245,230,.14); }
+  .btn-outline{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--border);
+  }
+  .btn-outline:hover{ border-color:var(--blue); color:var(--blue); }
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--sand) 90%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid transparent;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .site-header.is-scrolled{
+    border-bottom-color:var(--border);
+    box-shadow:0 6px 18px -14px var(--shadow);
+  }
+  .header-row{ display:flex; align-items:center; justify-content:space-between; padding-block:14px; }
+  .brand{ display:flex; align-items:center; gap:.65em; text-decoration:none; color:var(--ink); }
+  .brand svg{ width:32px; height:32px; flex:none; color:var(--blue); }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.1; }
+  .brand-name{ font-family:'Fraunces', serif; font-weight:600; font-size:1rem; }
+  .brand-sub{ font-family:'Oswald', sans-serif; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+  nav.main-nav{ display:flex; align-items:center; gap:24px; }
+  nav.main-nav a{
+    font-family:'Oswald', sans-serif; font-weight:500; font-size:.82rem;
+    letter-spacing:.03em; text-decoration:none; color:var(--ink-soft);
+    padding-block:4px; border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav.main-nav a:hover{ color:var(--red); border-color:var(--red); }
+  .nav-toggle{
+    display:none; background:none; border:1px solid var(--border); border-radius:3px;
+    width:40px; height:36px; align-items:center; justify-content:center; cursor:pointer; color:var(--ink);
+  }
+  .nav-toggle svg{ width:20px; height:20px; }
+  .mobile-panel{ display:none; }
+
+  @media (max-width:900px){
+    nav.main-nav{ display:none; }
+    .header-cta{ display:none; }
+    .nav-toggle{ display:flex; }
+    .mobile-panel.is-open{
+      display:flex; flex-direction:column; gap:2px; padding-block:10px 16px;
+      border-top:1px solid var(--border);
+    }
+    .mobile-panel a{
+      font-family:'Oswald', sans-serif; font-weight:500; font-size:.92rem;
+      color:var(--ink); text-decoration:none; padding:10px 4px;
+      border-bottom:1px solid var(--border);
+    }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    margin-inline:-20px;
+    min-height:88vh;
+    display:flex; align-items:flex-end;
+    color:var(--linen);
+  }
+  .hero-scene{ position:absolute; inset:0; z-index:0; }
+  .hero-scene svg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .hero-scrim{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(0deg, rgba(10,8,4,.78) 0%, rgba(10,8,4,.35) 42%, rgba(10,8,4,.05) 68%);
+  }
+  .hero-content{ position:relative; z-index:2; padding:0 24px 56px; width:100%; }
+  .hero-content .wrap{ padding:0; }
+  .hero-eyebrow{ color:#E9C888; }
+  .hero h1{
+    color:var(--linen); font-size:clamp(2.6rem, 1.7rem + 4vw, 4.6rem);
+    line-height:.98; margin-top:.3em; letter-spacing:-.01em;
+  }
+  .hero .lede{ color:#E9E1CC; margin-top:.9em; font-size:1.1rem; max-width:56ch; }
+  .hero-actions{ margin-top:1.9em; display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-anim{ animation:hero-rise .8s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes hero-rise{ from{ opacity:.5; transform:translateY(14px);} to{ opacity:1; transform:translateY(0);} }
+
+  @media (max-width:640px){ .hero{ min-height:78vh; } }
+
+  /* wave divider */
+  .wave-divider{ display:block; width:100%; height:44px; margin-top:-2px; position:relative; z-index:3; color:var(--sand); }
+
+  /* ---------- section shell ---------- */
+  section{ padding-block:74px; border-top:1px solid var(--border); }
+  .hero-wrap{ border-top:none; padding-block:0; }
+  .section-head{ max-width:60ch; margin-bottom:38px; }
+  .section-head h2{ margin-top:.3em; }
+  .section-head.center{ margin-inline:auto; text-align:center; }
+
+  /* ---------- historia ---------- */
+  .historia-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:start; }
+  .historia-grid p + p{ margin-top:1.1em; }
+  .historia-figure{ border:1px solid var(--border); border-radius:6px; padding:28px; background:var(--sand-2); }
+  .historia-figure svg{ width:100%; height:auto; display:block; }
+  .historia-figure .cap{ margin-top:14px; font-family:'Oswald',sans-serif; font-size:.76rem; letter-spacing:.03em; color:var(--ink-soft); }
+  @media (max-width:860px){ .historia-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- card grids (junta / filaes) ---------- */
+  .card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .role-card, .fila-card{
+    border:1px solid var(--border); border-radius:6px; padding:26px 22px;
+    background:var(--linen);
+  }
+  .role-avatar{
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:color-mix(in srgb, var(--blue) 14%, var(--linen)); color:var(--blue); margin-bottom:16px;
+  }
+  .role-avatar svg{ width:24px; height:24px; }
+  .role-card h3{ font-size:1rem; }
+  .role-title{ font-family:'Oswald',sans-serif; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--red); margin-top:.3em; display:block; }
+  .fila-card{ display:flex; gap:16px; align-items:flex-start; }
+  .fila-icon{ width:40px; height:40px; flex:none; border-radius:8px; display:flex; align-items:center; justify-content:center; background:color-mix(in srgb, var(--red) 14%, var(--linen)); color:var(--red); }
+  .fila-icon svg{ width:20px; height:20px; }
+  .fila-card p{ color:var(--ink-soft); font-size:.92rem; margin-top:.4em; }
+  @media (max-width:860px){ .card-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .card-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- programa ---------- */
+  .programa-list{ list-style:none; margin:0; padding:0; border-top:1px solid var(--border); }
+  .programa-item{ display:grid; grid-template-columns:64px 1fr auto; gap:22px; align-items:baseline; padding-block:22px; border-bottom:1px solid var(--border); }
+  .programa-num{ font-family:'Fraunces', serif; font-weight:600; font-size:1.6rem; color:var(--blue); font-variant-numeric:tabular-nums; }
+  .programa-body h3{ margin-bottom:.35em; }
+  .programa-body p{ color:var(--ink-soft); max-width:56ch; }
+  .programa-day{ font-family:'Oswald', sans-serif; font-weight:500; font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); white-space:nowrap; }
+  @media (max-width:640px){
+    .programa-item{ grid-template-columns:44px 1fr; }
+    .programa-day{ grid-column:2; margin-top:2px; }
+  }
+
+  /* ---------- galeria ---------- */
+  .gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .gallery-tile{ aspect-ratio:1; border-radius:6px; overflow:hidden; position:relative; border:1px solid var(--border); background:var(--sand-3); display:flex; align-items:flex-end; }
+  .gallery-tile svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .gallery-label{ position:relative; z-index:2; width:100%; padding:12px; font-family:'Oswald', sans-serif; font-weight:500; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; color:var(--linen); background:linear-gradient(0deg, rgba(0,0,0,.5), transparent); }
+  @media (max-width:760px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); } }
+  .gallery-note{ margin-top:20px; font-family:'Oswald', sans-serif; font-size:.8rem; color:var(--ink-soft); }
+
+  /* ---------- mercadillo ---------- */
+  .mercadillo{ background:linear-gradient(135deg, var(--blue-deep), var(--red-deep)); border-radius:8px; color:var(--linen); border-top:none; }
+  .mercadillo-inner{ padding:52px 40px; }
+  .mercadillo .eyebrow{ color:#E9C888; }
+  .mercadillo h2{ color:var(--linen); }
+  .mercadillo-lede{ color:#EDE4CE; margin-top:.8em; max-width:60ch; }
+  .steps{ list-style:none; margin:2.2em 0 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; counter-reset:step; }
+  .steps li{ counter-increment:step; background:rgba(251,245,230,.08); border:1px solid rgba(251,245,230,.22); border-radius:6px; padding:20px; }
+  .steps li::before{ content:counter(step); font-family:'Fraunces',serif; font-weight:600; font-size:1.6rem; color:#E9C888; display:block; margin-bottom:.4em; }
+  .steps h3{ color:var(--linen); font-size:.98rem; }
+  .steps p{ color:#DCD2B8; font-size:.86rem; margin-top:.4em; }
+  .mercadillo-actions{ margin-top:2em; display:flex; gap:14px; flex-wrap:wrap; }
+  .trajes-grid{ margin-top:2.6em; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .traje-card{ background:var(--linen); color:var(--ink); border-radius:6px; padding:18px 20px; border:1px solid rgba(37,30,19,.1); }
+  .traje-card h3{ font-size:1rem; color:var(--ink); }
+  .traje-tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:.6em; }
+  .traje-tag{ font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; padding:.3em .7em; border-radius:2px; background:color-mix(in srgb, var(--blue) 12%, var(--linen)); color:var(--blue); }
+  .traje-price{ font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; color:var(--red); margin-top:.5em; display:block; }
+  .traje-contact{ font-size:.86rem; color:var(--ink-soft); margin-top:.5em; }
+  .traje-card a.photo-link{ display:inline-block; margin-top:.6em; font-family:'Oswald',sans-serif; font-size:.78rem; text-decoration:underline; color:var(--blue); }
+  .trajes-empty{ margin-top:2.6em; background:rgba(251,245,230,.08); border:1px dashed rgba(251,245,230,.35); border-radius:6px; padding:32px; text-align:center; }
+  .trajes-empty p{ color:#EDE4CE; }
+  @media (max-width:900px){ .steps, .trajes-grid{ grid-template-columns:1fr 1fr; } .mercadillo-inner{ padding:40px 24px; } }
+  @media (max-width:600px){ .steps, .trajes-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- redes / contacto ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:48px; }
+  .contact-block h3{ font-size:.8rem; font-family:'Oswald',sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; margin-bottom:.6em; }
+  .contact-block address{ font-style:normal; color:var(--ink); line-height:1.6; }
+  .contact-block a{ text-decoration:none; border-bottom:1px solid var(--border); }
+  .contact-block a:hover{ border-color:var(--red); color:var(--red); }
+  .social-row{ display:flex; gap:12px; margin-top:1em; }
+  .social-btn{ width:44px; height:44px; border-radius:50%; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--ink); text-decoration:none; transition:border-color .15s ease, color .15s ease, transform .15s ease; }
+  .social-btn svg{ width:20px; height:20px; }
+  .social-btn:hover{ border-color:var(--red); color:var(--red); transform:translateY(-2px); }
+  @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; } }
+
+  footer{ border-top:1px solid var(--border); padding-block:34px 40px; }
+  .footer-row{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; font-family:'Oswald', sans-serif; font-size:.76rem; color:var(--ink-soft); }
+  .footer-brand{ display:flex; align-items:center; gap:.5em; }
+  .footer-brand svg{ width:18px; height:18px; color:var(--blue); }
+</style>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="emblem" viewBox="0 0 48 48" fill="none">
+    <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M27 12a12 12 0 1 0 0 24 14.4 14.4 0 1 1 0-24Z" fill="currentColor"/>
+    <path d="M32 15.5l1.7 3.6 4 .5-2.9 2.8.7 4-3.5-1.9-3.5 1.9.7-4-2.9-2.8 4-.5Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-crescent" viewBox="0 0 24 24" fill="none"><path d="M15 4a8.5 8.5 0 1 0 0 16 10 10 0 1 1 0-16Z" fill="currentColor"/></symbol>
+  <symbol id="icon-tent" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 17H3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 3v17M7.5 20 12 11l4.5 9" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-camel" viewBox="0 0 24 24" fill="none"><path d="M3 18h2l1-3c1-2 2-3 3-3 .6-1.6 1.8-2.5 3-2.5 1 0 1.8.6 2 1.5.4-.7 1.2-1.2 2-1.2 1.4 0 2.5 1.2 2.5 2.7 0 .6-.2 1.1-.5 1.5L20 18h1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 18v2M9 18v2M17 18v2M20 18v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="icon-compass" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M15 9l-2 6-4-2 2-6Z" fill="currentColor"/></symbol>
+  <symbol id="icon-drum" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="7" rx="7" ry="3" stroke="currentColor" stroke-width="1.6"/><path d="M5 7v9c0 1.7 3.1 3 7 3s7-1.3 7-3V7" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="3.7" stroke="currentColor" stroke-width="1.6"/><path d="M4.5 20c1.4-3.8 4.4-5.8 7.5-5.8s6.1 2 7.5 5.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="icon-tag" viewBox="0 0 24 24" fill="none"><path d="M11 3H4v7l10 10 7-7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="1" fill="currentColor"/></symbol>
+  <symbol id="icon-facebook" viewBox="0 0 24 24" fill="none"><path d="M14 21v-8h2.7l.4-3H14V8.2c0-.9.3-1.5 1.6-1.5H17V4.1C16.7 4 15.8 4 14.8 4c-2.2 0-3.7 1.3-3.7 3.8V10H8.5v3H11v8Z" fill="currentColor"/></symbol>
+  <symbol id="icon-tiktok" viewBox="0 0 24 24" fill="none"><path d="M14 3v11.2a2.8 2.8 0 1 1-2-2.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 3c.3 2.4 2 4.2 4.4 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-row">
+    <a class="brand" href="#inicio">
+      <svg><use href="#emblem"></use></svg>
+      <span class="brand-text">
+        <span class="brand-name">Beduinos de Petrer</span>
+        <span class="brand-sub">Moros y Cristianos</span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#historia">Historia</a>
+      <a href="#junta">Junta</a>
+      <a href="#filaes">Filaes</a>
+      <a href="#calendario">Calendario</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-outline header-cta" href="#mercadillo">Mercadillo</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Abrir menú">
+      <svg id="navToggleIcon"><use href="#icon-menu"></use></svg>
+    </button>
+  </div>
+  <div class="wrap mobile-panel" id="mobilePanel">
+    <a href="#historia">Historia</a>
+    <a href="#junta">Junta directiva</a>
+    <a href="#filaes">Filaes</a>
+    <a href="#calendario">Calendario</a>
+    <a href="#galeria">Galería</a>
+    <a href="#mercadillo">Mercadillo</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="wrap hero-wrap" id="inicio">
+    <div class="hero">
+      <div class="hero-scene" aria-hidden="true">
+        <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#122A4C"/>
+              <stop offset=".45" stop-color="#3B4E72"/>
+              <stop offset=".72" stop-color="#9C5B4A"/>
+              <stop offset="1" stop-color="#D9A25C"/>
+            </linearGradient>
+          </defs>
+          <rect width="1200" height="800" fill="url(#skyGrad)"/>
+          <circle cx="960" cy="190" r="70" fill="#F3E3B8" opacity=".92"/>
+          <circle cx="985" cy="175" r="70" fill="#122A4C" opacity=".55"/>
+          <g fill="#F3E3B8" opacity=".8">
+            <circle cx="140" cy="110" r="2"/><circle cx="220" cy="160" r="1.6"/><circle cx="320" cy="90" r="2"/>
+            <circle cx="430" cy="150" r="1.6"/><circle cx="560" cy="80" r="2"/><circle cx="700" cy="130" r="1.6"/>
+            <circle cx="80" cy="220" r="1.6"/><circle cx="260" cy="60" r="1.4"/>
+          </g>
+          <polygon points="0,520 150,470 300,505 460,455 620,500 800,460 980,500 1200,470 1200,800 0,800" fill="#3D2C1E" opacity=".55"/>
+          <polygon points="0,600 200,540 420,590 650,530 900,585 1200,545 1200,800 0,800" fill="#26190F"/>
+          <g transform="translate(230,470)" opacity=".9">
+            <g><ellipse cx="0" cy="0" rx="26" ry="13" fill="#1B140C"/><path d="M-14 -6q6 -16 14 -16t14 16" stroke="#1B140C" stroke-width="6" fill="none"/><path d="M-20 4 -26 22M20 4 26 22M-4 6 -4 22M8 6 8 22" stroke="#1B140C" stroke-width="4" stroke-linecap="round"/></g>
+            <g transform="translate(70,14) scale(.85)"><ellipse cx="0" cy="0" rx="26" ry="13" fill="#1B140C"/><path d="M-14 -6q6 -16 14 -16t14 16" stroke="#1B140C" stroke-width="6" fill="none"/><path d="M-20 4 -26 22M20 4 26 22M-4 6 -4 22M8 6 8 22" stroke="#1B140C" stroke-width="4" stroke-linecap="round"/></g>
+            <g transform="translate(140,26) scale(.7)"><ellipse cx="0" cy="0" rx="26" ry="13" fill="#1B140C"/><path d="M-14 -6q6 -16 14 -16t14 16" stroke="#1B140C" stroke-width="6" fill="none"/><path d="M-20 4 -26 22M20 4 26 22M-4 6 -4 22M8 6 8 22" stroke="#1B140C" stroke-width="4" stroke-linecap="round"/></g>
+          </g>
+          <polygon points="960,700 1060,560 1160,700" fill="#1B140C"/>
+          <polygon points="985,700 1060,590 1135,700" fill="#2E2014"/>
+        </svg>
+      </div>
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="wrap hero-anim">
+          <p class="eyebrow hero-eyebrow">Comparsa Moros Beduinos · Fiestas de Moros y Cristianos de Petrer</p>
+          <h1>Beduinos</h1>
+          <p class="lede">Hijos del desierto y de la caravana. Cada fiesta vestimos de azul, rojo y blanco para recorrer las calles de Petrer con el mismo orgullo transhumante que llevamos en el escudo.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#calendario">Ver el calendario</a>
+            <a class="btn btn-ghost" href="#mercadillo">Mercadillo de trajes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <svg class="wave-divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 30 Q150 8 300 26 T600 22 T900 30 T1200 18 V44 H0 Z" fill="currentColor"/>
+    </svg>
+  </section>
+
+  <section id="historia">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Nuestra historia</p>
+        <h2>De caravana a comparsa</h2>
+      </div>
+      <div class="historia-grid">
+        <div>
+          <p>Nacimos con la vocación de traer al desfile algo distinto: el espíritu del beduino, el pueblo que nunca echó raíces porque su casa era el camino. Cada filà que forma la comparsa recuerda a su manera esa vida transhumante — el campamento que se levanta y se recoge, la ruta que se conoce de memoria, la lealtad a quienes comparten tienda.</p>
+          <p>Con los años, esa idea se ha ido bordando literalmente en nuestro traje de guerrilla y en el escudo que llevamos al pecho: azul de la noche del desierto, rojo de la arena al atardecer, blanco de las jaimas y las telas que nos visten. Hoy somos familias enteras — de la escuadra infantil a quienes llevan medio siglo desfilando — que cada año vuelven a levantar el campamento en Petrer.</p>
+        </div>
+        <div class="historia-figure">
+          <svg viewBox="0 0 260 200" aria-hidden="true">
+            <circle cx="130" cy="100" r="66" fill="none" stroke="var(--blue)" stroke-width="1.2" opacity=".4"/>
+            <g transform="translate(130,100)">
+              <path d="M12 -50a12 12 0 1 0 0 24 14.4 14.4 0 1 1 0-24Z" fill="var(--blue)" transform="translate(-30,20) scale(2.1)"/>
+              <g transform="translate(10,26)" stroke="var(--red)" stroke-width="3" fill="none" stroke-linecap="round">
+                <path d="M-38 20h76M-38 20l14 -30M38 20l-14 -30M-24 -10h48"/>
+              </g>
+            </g>
+          </svg>
+          <p class="cap">Creciente y jaima: el emblema de la comparsa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="junta">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Quién la mantiene viva</p>
+        <h2>Junta directiva</h2>
+      </div>
+      <div class="card-grid">
+        <div class="role-card"><div class="role-avatar"><svg><use href="#icon-user"></use></svg></div><h3>Nombre Apellido</h3><span class="role-title">Presidente/a</span></div>
+        <div class="role-card"><div class="role-avatar"><svg><use href="#icon-user"></use></svg></div><h3>Nombre Apellido</h3><span class="role-title">Vicepresidente/a</span></div>
+        <div class="role-card"><div class="role-avatar"><svg><use href="#icon-user"></use></svg></div><h3>Nombre Apellido</h3><span class="role-title">Secretario/a</span></div>
+        <div class="role-card"><div class="role-avatar"><svg><use href="#icon-user"></use></svg></div><h3>Nombre Apellido</h3><span class="role-title">Tesorero/a</span></div>
+        <div class="role-card"><div class="role-avatar"><svg><use href="#icon-user"></use></svg></div><h3>Nombre Apellido</h3><span class="role-title">Vocal de Filaes</span></div>
+        <div class="role-card"><div class="role-avatar"><svg><use href="#icon-user"></use></svg></div><h3>Nombre Apellido</h3><span class="role-title">Vocal de Fiestas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="filaes">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">La comparsa</p>
+        <h2>Nuestras filaes</h2>
+      </div>
+      <div class="card-grid">
+        <div class="fila-card">
+          <div class="fila-icon"><svg><use href="#icon-compass"></use></svg></div>
+          <div><h3>Filà Mayor</h3><p>El grueso de la comparsa, la que marca el paso en cada desfile.</p></div>
+        </div>
+        <div class="fila-card">
+          <div class="fila-icon"><svg><use href="#icon-camel"></use></svg></div>
+          <div><h3>Filà Infantil</h3><p>La cantera: los más pequeños heredan el traje y la tradición.</p></div>
+        </div>
+        <div class="fila-card">
+          <div class="fila-icon"><svg><use href="#icon-tent"></use></svg></div>
+          <div><h3>Filà Femenina</h3><p>Con identidad y boato propios dentro de la comparsa.</p></div>
+        </div>
+        <div class="fila-card">
+          <div class="fila-icon"><svg><use href="#icon-drum"></use></svg></div>
+          <div><h3>Banda de Música</h3><p>El pasodoble que anuncia a los Beduinos antes de verlos llegar.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendario">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Programa de fiestas</p>
+        <h2>Actos y desfiles, día a día</h2>
+      </div>
+      <ol class="programa-list">
+        <li class="programa-item">
+          <span class="programa-num">01</span>
+          <div class="programa-body"><h3>Ofrenda de Flores</h3><p>La comparsa acompaña a la patrona hasta la plaza con nuestro propio ramo.</p></div>
+          <span class="programa-day">Día 1 · Tarde</span>
+        </li>
+        <li class="programa-item">
+          <span class="programa-num">02</span>
+          <div class="programa-body"><h3>Entrada de Bandas</h3><p>Nuestra banda de música recorre las calles principales junto al resto de comparsas.</p></div>
+          <span class="programa-day">Día 2 · Mañana</span>
+        </li>
+        <li class="programa-item">
+          <span class="programa-num">03</span>
+          <div class="programa-body"><h3>Desfile de Gala</h3><p>Sacamos nuestro boato completo: filaes, guerrilla y caravana al desierto.</p></div>
+          <span class="programa-day">Día 3 · Tarde</span>
+        </li>
+        <li class="programa-item">
+          <span class="programa-num">04</span>
+          <div class="programa-body"><h3>Embajada y Alardo</h3><p>Nuestro capitán representa a la comparsa en la disputa por el castillo, con salvas de arcabucería.</p></div>
+          <span class="programa-day">Día 4 · Mañana</span>
+        </li>
+        <li class="programa-item">
+          <span class="programa-num">05</span>
+          <div class="programa-body"><h3>Acto de Capitanía</h3><p>Entrega de la bandera de la comparsa a quien lidera la edición de este año.</p></div>
+          <span class="programa-day">Día 4 · Tarde</span>
+        </li>
+        <li class="programa-item">
+          <span class="programa-num">06</span>
+          <div class="programa-body"><h3>Retreta y Verbena</h3><p>Último paseo con antorchas antes de la verbena que cierra las fiestas.</p></div>
+          <span class="programa-day">Día 5 · Noche</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Un vistazo</p>
+        <h2>Galería</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-tile"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="var(--blue)"/><circle cx="150" cy="50" r="60" fill="var(--blue-deep)" opacity=".55"/><circle cx="40" cy="170" r="50" fill="#F3E3B8" opacity=".25"/></svg><span class="gallery-label">Desfile</span></div>
+        <div class="gallery-tile"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="var(--red)"/><polygon points="0,200 70,80 140,200" fill="var(--red-deep)" opacity=".7"/></svg><span class="gallery-label">Guerrilla</span></div>
+        <div class="gallery-tile"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="#D6BE8B"/><polygon points="20,200 80,90 140,200" fill="#3D2C1E" opacity=".6"/><polygon points="90,200 150,110 200,200" fill="#26190F" opacity=".8"/></svg><span class="gallery-label">Desierto</span></div>
+        <div class="gallery-tile"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="#122A4C"/><circle cx="100" cy="100" r="14" fill="#F3E3B8"/><circle cx="100" cy="100" r="44" fill="none" stroke="#F3E3B8" stroke-width="3" opacity=".55"/><circle cx="100" cy="100" r="74" fill="none" stroke="#F3E3B8" stroke-width="2" opacity=".35"/></svg><span class="gallery-label">Alardo</span></div>
+      </div>
+      <p class="gallery-note">Espacio reservado para vuestras fotografías reales de desfiles, ensayos y actos de la comparsa.</p>
+    </div>
+  </section>
+
+  <section id="mercadillo" class="mercadillo">
+    <div class="mercadillo-inner">
+      <p class="eyebrow">Segunda vida al traje</p>
+      <h2>Mercadillo de trajes</h2>
+      <p class="mercadillo-lede">¿Te has quedado pequeño el traje de guerrilla o ya no lo usas? Aquí puedes venderlo o comprarlo de segunda mano dentro de la propia comparsa.</p>
+      <ol class="steps">
+        <li><h3>Publica tu traje</h3><p>Rellena el formulario con la prenda, la talla, el precio y unas fotos.</p></li>
+        <li><h3>Se publica aquí</h3><p>En cuanto se registra tu anuncio, aparece abajo para toda la comparsa.</p></li>
+        <li><h3>Contacta directo</h3><p>Quien esté interesado te escribe o te llama, sin intermediarios.</p></li>
+      </ol>
+      <div class="mercadillo-actions">
+        <a class="btn btn-solid" id="formLink" href="#" target="_blank" rel="noopener">Publicar mi traje</a>
+        <a class="btn btn-ghost" href="#trajesGrid">Ver trajes disponibles</a>
+      </div>
+      <div class="trajes-grid" id="trajesGrid"></div>
+      <div class="trajes-empty" id="trajesEmpty" hidden>
+        <p>Todavía no hay trajes publicados. ¡Sé el primero en publicar el tuyo!</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Contacto</p>
+        <h2>Ven a conocernos</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-block">
+          <h3>Casal festero</h3>
+          <address>Carrer Major, 12<br>03610 Petrer, Alicante</address>
+        </div>
+        <div>
+          <div class="contact-block">
+            <h3>Escríbenos</h3>
+            <p><a href="mailto:info@beduinospetrer.es">info@beduinospetrer.es</a></p>
+            <p style="margin-top:.4em;"><a href="tel:+34600000000">+34 600 00 00 00</a></p>
+          </div>
+          <div class="contact-block" style="margin-top:1.6em;">
+            <h3>Síguenos</h3>
+            <div class="social-row">
+              <a class="social-btn" href="#" aria-label="Instagram"><svg><use href="#icon-instagram"></use></svg></a>
+              <a class="social-btn" href="#" aria-label="Facebook"><svg><use href="#icon-facebook"></use></svg></a>
+              <a class="social-btn" href="#" aria-label="TikTok"><svg><use href="#icon-tiktok"></use></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="footer-brand"><svg><use href="#emblem"></use></svg>Comparsa Moros Beduinos de Petrer</div>
+    <span>Fiestas de Moros y Cristianos de Petrer</span>
+  </div>
+</footer>
+
+<script>
+  var header = document.getElementById('siteHeader');
+  var onScroll = function(){
+    if (window.scrollY > 8) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var toggle = document.getElementById('navToggle');
+  var panel = document.getElementById('mobilePanel');
+  var toggleIcon = document.getElementById('navToggleIcon');
+  toggle.addEventListener('click', function(){
+    var open = panel.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggleIcon.innerHTML = open ? '<use href="#icon-close"></use>' : '<use href="#icon-menu"></use>';
+  });
+  panel.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      panel.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggleIcon.innerHTML = '<use href="#icon-menu"></use>';
+    });
+  });
+
+  /* ---- Mercadillo: lee un Google Form + Sheet publicados como CSV ----
+     1. Crea un Google Form con estos campos, en este orden:
+        Nombre, Teléfono o WhatsApp, Prenda, Talla, Precio, Estado, Enlace a fotos, Comentarios
+     2. Abre la hoja de respuestas vinculada > Archivo > Compartir > Publicar en la web > formato CSV
+     3. Pega aquí las dos URL que te da Google */
+  var FORM_URL = "";
+  var SHEET_CSV_URL = "";
+
+  document.getElementById('formLink').href = FORM_URL || "mailto:info@beduinospetrer.es?subject=Quiero%20publicar%20un%20traje";
+
+  function parseCSV(text){
+    var rows = []; var row = []; var field = ''; var inQuotes = false;
+    for (var i = 0; i < text.length; i++){
+      var c = text[i];
+      if (inQuotes){
+        if (c === '"'){
+          if (text[i+1] === '"'){ field += '"'; i++; } else { inQuotes = false; }
+        } else { field += c; }
+      } else {
+        if (c === '"'){ inQuotes = true; }
+        else if (c === ','){ row.push(field); field = ''; }
+        else if (c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c === '\r'){ /* skip */ }
+        else { field += c; }
+      }
+    }
+    if (field.length || row.length){ row.push(field); rows.push(row); }
+    return rows.filter(function(r){ return r.length > 1 || (r[0] && r[0].trim()); });
+  }
+
+  function escapeHtml(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  function findCol(header, keywords){
+    for (var i = 0; i < header.length; i++){
+      var h = header[i];
+      for (var k = 0; k < keywords.length; k++){
+        if (h.indexOf(keywords[k]) !== -1) return i;
+      }
+    }
+    return -1;
+  }
+
+  function renderTrajeCard(r, idx){
+    var prenda = idx.prenda >= 0 ? r[idx.prenda] : 'Traje';
+    var talla = idx.talla >= 0 ? r[idx.talla] : '';
+    var precio = idx.precio >= 0 ? r[idx.precio] : '';
+    var estado = idx.estado >= 0 ? r[idx.estado] : '';
+    var contacto = idx.contacto >= 0 ? r[idx.contacto] : '';
+    var fotos = idx.fotos >= 0 ? r[idx.fotos] : '';
+    var tags = '';
+    if (talla) tags += '<span class="traje-tag">Talla ' + escapeHtml(talla) + '</span>';
+    if (estado) tags += '<span class="traje-tag">' + escapeHtml(estado) + '</span>';
+    var html = '<div class="traje-card">';
+    html += '<h3>' + escapeHtml(prenda || 'Traje') + '</h3>';
+    if (tags) html += '<div class="traje-tags">' + tags + '</div>';
+    if (precio) html += '<span class="traje-price">' + escapeHtml(precio) + ' &euro;</span>';
+    if (contacto) html += '<p class="traje-contact">Contacto: ' + escapeHtml(contacto) + '</p>';
+    if (fotos && /^https?:\/\//i.test(fotos.trim())) html += '<a class="photo-link" href="' + escapeHtml(fotos.trim()) + '" target="_blank" rel="noopener">Ver fotos</a>';
+    html += '</div>';
+    return html;
+  }
+
+  function loadTrajes(){
+    var grid = document.getElementById('trajesGrid');
+    var empty = document.getElementById('trajesEmpty');
+    if (!SHEET_CSV_URL){ empty.hidden = false; return; }
+    fetch(SHEET_CSV_URL, { cache: 'no-store' })
+      .then(function(res){ if (!res.ok) throw new Error('status ' + res.status); return res.text(); })
+      .then(function(text){
+        var rows = parseCSV(text);
+        if (rows.length <= 1){ empty.hidden = false; return; }
+        var header = rows[0].map(function(h){ return h.trim().toLowerCase(); });
+        var idx = {
+          contacto: findCol(header, ['tel', 'whats']),
+          prenda: findCol(header, ['prenda', 'qué vende', 'articulo', 'artículo']),
+          talla: findCol(header, ['talla']),
+          precio: findCol(header, ['precio']),
+          estado: findCol(header, ['estado']),
+          fotos: findCol(header, ['foto', 'enlace'])
+        };
+        var items = rows.slice(1).filter(function(r){ return r.length > 1; }).reverse();
+        if (!items.length){ empty.hidden = false; return; }
+        grid.innerHTML = items.map(function(r){ return renderTrajeCard(r, idx); }).join('');
+      })
+      .catch(function(){ empty.hidden = false; });
+  }
+  loadTrajes();
+</script>
