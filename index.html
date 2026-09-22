@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Comparsa Moros Beduinos de Petrer - Fiestas de Moros y Cristianos, historia, calendario de actos, filaes y mercadillo de trajes.">
 <title>Comparsa Beduinos de Petrer</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
@@ -10,7 +16,7 @@
     --ink-soft:#5C4F38;
     --blue:#1B3A66;
     --blue-deep:#122A4C;
-    --red:#9C2B2B;
+    --red:#8F2626;
     --red-deep:#7C2020;
     --linen:#FBF5E6;
     --border:rgba(37,30,19,.16);
@@ -25,7 +31,7 @@
       --ink-soft:#C9B98F;
       --blue:#5580BD;
       --blue-deep:#3D628F;
-      --red:#D0645D;
+      --red:#DD7369;
       --red-deep:#B04C46;
       --linen:#241C11;
       --border:rgba(243,231,204,.16);
@@ -40,7 +46,7 @@
     --ink-soft:#C9B98F;
     --blue:#5580BD;
     --blue-deep:#3D628F;
-    --red:#D0645D;
+    --red:#DD7369;
     --red-deep:#B04C46;
     --linen:#241C11;
     --border:rgba(243,231,204,.16);
@@ -151,8 +157,15 @@
   nav.main-nav a:hover{ color:var(--red); border-color:var(--red); }
   .nav-toggle{
     display:none; background:none; border:1px solid var(--border); border-radius:3px;
-    width:40px; height:36px; align-items:center; justify-content:center; cursor:pointer; color:var(--ink);
+    width:44px; height:44px; flex-shrink:0; align-items:center; justify-content:center; cursor:pointer; color:var(--ink);
   }
+  .skip-link{
+    position:absolute; left:12px; top:-60px; z-index:100;
+    background:var(--red); color:var(--linen); font-family:'Oswald',sans-serif; font-weight:600;
+    font-size:.86rem; padding:.8em 1.2em; border-radius:3px; text-decoration:none;
+    transition:top .15s ease;
+  }
+  .skip-link:focus{ top:12px; }
   .nav-toggle svg{ width:20px; height:20px; }
   .mobile-panel{ display:none; }
 
@@ -327,6 +340,8 @@
   .footer-brand{ display:flex; align-items:center; gap:.5em; }
   .footer-brand svg{ width:18px; height:18px; color:var(--blue); }
 </style>
+</head>
+<body>
 
 <svg style="display:none" aria-hidden="true">
   <symbol id="emblem" viewBox="0 0 48 48" fill="none">
@@ -349,6 +364,8 @@
   <symbol id="icon-facebook" viewBox="0 0 24 24" fill="none"><path d="M14 21v-8h2.7l.4-3H14V8.2c0-.9.3-1.5 1.6-1.5H17V4.1C16.7 4 15.8 4 14.8 4c-2.2 0-3.7 1.3-3.7 3.8V10H8.5v3H11v8Z" fill="currentColor"/></symbol>
   <symbol id="icon-tiktok" viewBox="0 0 24 24" fill="none"><path d="M14 3v11.2a2.8 2.8 0 1 1-2-2.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 3c.3 2.4 2 4.2 4.4 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
 </svg>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
 <header class="site-header" id="siteHeader">
   <div class="wrap header-row">
@@ -385,7 +402,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
 
   <section class="wrap hero-wrap" id="inicio">
     <div class="hero">
@@ -763,3 +780,5 @@
   }
   loadTrajes();
 </script>
+</body>
+</html>
