@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Comparsa Moros Beduinos de Petrer - Fiestas de Moros y Cristianos, historia, calendario de actos, filaes y mercadillo de trajes.">
-<title>Comparsa Beduinos de Petrer</title>
+<meta name="description" content="Comparsa Moros Beduinos Petrer, desde 1963. Fiestas de Moros y Cristianos: historia, Sant Bonifaci, filaes, calendario de actos y mercadillo de trajes.">
+<link rel="icon" type="image/png" href="images/favicon-64.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<title>Comparsa Moros Beduinos Petrer</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
 
@@ -145,7 +147,7 @@
   }
   .header-row{ display:flex; align-items:center; justify-content:space-between; padding-block:14px; }
   .brand{ display:flex; align-items:center; gap:.65em; text-decoration:none; color:var(--ink); }
-  .brand svg{ width:32px; height:32px; flex:none; color:var(--blue); }
+  .brand img{ height:44px; width:auto; flex:none; display:block; }
   .brand-text{ display:flex; flex-direction:column; line-height:1.1; }
   .brand-name{ font-family:'Fraunces', serif; font-weight:600; font-size:1rem; }
   .brand-sub{ font-family:'Oswald', sans-serif; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
@@ -190,7 +192,7 @@
   .slides{ position:absolute; inset:0; z-index:0; overflow:hidden; background:#122A4C; }
   .slide{
     position:absolute; top:0; left:-4%; width:108%; height:100%;
-    object-fit:cover; opacity:0;
+    max-width:none; object-fit:cover; opacity:0;
     transition:opacity .9s cubic-bezier(.16,1,.3,1);
   }
   .slide.is-active{
@@ -201,6 +203,7 @@
     from{ transform:translate3d(-3%,0,0) scale(1.03); }
     to{ transform:translate3d(3%,0,0) scale(1.03); }
   }
+  .slide.is-solo.is-active{ animation:caravana 18s ease-in-out infinite alternate; }
   .is-paused .slide, .is-offscreen .slide,
   .is-paused .dot-fill, .is-offscreen .dot-fill{ animation-play-state:paused; }
 
@@ -225,8 +228,8 @@
     --slide-dur:8s;
     position:relative; overflow:hidden;
     margin-inline:-20px;
-    min-height:calc(100vh - 64px);
-    min-height:calc(100svh - 64px);
+    min-height:calc(100vh - 72px);
+    min-height:calc(100svh - 72px);
     display:flex; align-items:flex-end;
     color:var(--on-dark);
   }
@@ -274,13 +277,15 @@
   section.has-band{ padding-top:0; border-top:none; }
 
   @media (prefers-reduced-motion: reduce){
-    .slide.is-active{ animation:none; }
+    .slide.is-active, .slide.is-solo.is-active{ animation:none; }
     .dot.is-active .dot-fill{ animation:none; transform:scaleX(1); }
     .slide-pause{ display:none; }
   }
-  .hero .lede{ color:#E9E1CC; margin-top:.9em; font-size:1.1rem; max-width:56ch; }
-  .hero-dates{ display:flex; align-items:center; gap:.6em; margin-top:1.3em; font-family:'Oswald', sans-serif; font-weight:500; font-size:.86rem; letter-spacing:.03em; color:var(--on-dark); }
-  .hero-dates svg{ width:17px; height:17px; flex:none; color:#E9C888; }
+  .intro{ display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:24px 56px; align-items:end; padding-block:40px 64px; }
+  .intro .lede{ font-family:'Fraunces', Georgia, serif; font-size:clamp(1.25rem, 1rem + 1vw, 1.6rem); line-height:1.4; color:var(--ink); max-width:38ch; }
+  .intro-dates{ display:flex; align-items:center; gap:.7em; font-family:'Oswald', sans-serif; font-weight:500; font-size:.95rem; letter-spacing:.03em; color:var(--ink-soft); }
+  .intro-dates svg{ width:20px; height:20px; flex:none; color:var(--red); }
+  @media (max-width:760px){ .intro{ grid-template-columns:1fr; padding-top:24px; } }
   .hero-actions{ margin-top:1.9em; display:flex; gap:14px; flex-wrap:wrap; }
   .hero-anim{ animation:hero-rise .8s cubic-bezier(.2,.7,.2,1) both; }
   @keyframes hero-rise{ from{ opacity:.5; transform:translateY(14px);} to{ opacity:1; transform:translateY(0);} }
@@ -304,8 +309,8 @@
   /* ---------- historia ---------- */
   .historia-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:start; }
   .historia-grid p + p{ margin-top:1.1em; }
-  .historia-figure{ border:1px solid var(--border); border-radius:6px; padding:28px; background:var(--sand-2); }
-  .historia-figure svg{ width:100%; height:auto; display:block; }
+  .historia-figure{ margin:0; border:1px solid var(--border); border-radius:6px; padding:28px; background:var(--sand-2); }
+  .historia-figure img{ display:block; width:min(100%, 300px); height:auto; margin-inline:auto; }
   .historia-figure .cap{ margin-top:14px; font-family:'Oswald',sans-serif; font-size:.76rem; letter-spacing:.03em; color:var(--ink-soft); }
   @media (max-width:860px){ .historia-grid{ grid-template-columns:1fr; } }
 
@@ -415,17 +420,12 @@
   footer{ border-top:1px solid var(--border); padding-block:34px 40px; }
   .footer-row{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; font-family:'Oswald', sans-serif; font-size:.76rem; color:var(--ink-soft); }
   .footer-brand{ display:flex; align-items:center; gap:.5em; }
-  .footer-brand svg{ width:18px; height:18px; color:var(--blue); }
+  .footer-brand img{ height:28px; width:auto; display:block; }
 </style>
 </head>
 <body>
 
 <svg style="display:none" aria-hidden="true">
-  <symbol id="emblem" viewBox="0 0 48 48" fill="none">
-    <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.6"/>
-    <path d="M27 12a12 12 0 1 0 0 24 14.4 14.4 0 1 1 0-24Z" fill="currentColor"/>
-    <path d="M32 15.5l1.7 3.6 4 .5-2.9 2.8.7 4-3.5-1.9-3.5 1.9.7-4-2.9-2.8 4-.5Z" fill="currentColor"/>
-  </symbol>
   <symbol id="icon-crescent" viewBox="0 0 24 24" fill="none"><path d="M15 4a8.5 8.5 0 1 0 0 16 10 10 0 1 1 0-16Z" fill="currentColor"/></symbol>
   <symbol id="icon-tent" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 17H3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 3v17M7.5 20 12 11l4.5 9" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
   <symbol id="icon-camel" viewBox="0 0 24 24" fill="none"><path d="M3 18h2l1-3c1-2 2-3 3-3 .6-1.6 1.8-2.5 3-2.5 1 0 1.8.6 2 1.5.4-.7 1.2-1.2 2-1.2 1.4 0 2.5 1.2 2.5 2.7 0 .6-.2 1.1-.5 1.5L20 18h1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 18v2M9 18v2M17 18v2M20 18v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
@@ -447,10 +447,10 @@
 <header class="site-header" id="siteHeader">
   <div class="wrap header-row">
     <a class="brand" href="#inicio">
-      <svg><use href="#emblem"></use></svg>
+      <img src="images/escudo-112.png" alt="" width="31" height="44">
       <span class="brand-text">
-        <span class="brand-name">Beduinos de Petrer</span>
-        <span class="brand-sub">Moros y Cristianos</span>
+        <span class="brand-name">Moros Beduinos</span>
+        <span class="brand-sub">Comparsa · Petrer</span>
       </span>
     </a>
     <nav class="main-nav" aria-label="Navegación principal">
@@ -488,10 +488,8 @@
       <div class="scrim" aria-hidden="true"></div>
       <div class="hero-content">
         <div class="overlay-inner hero-anim">
-          <h1>Beduinos</h1>
-          <p class="hero-sub">Comparsa Moros Beduinos · Fiestas de Moros y Cristianos de Petrer</p>
-          <p class="lede">Hijos del desierto y de la caravana. Cada fiesta vestimos de azul, rojo y blanco para recorrer las calles de Petrer con el mismo orgullo transhumante que llevamos en el escudo.</p>
-          <div class="hero-dates"><svg><use href="#icon-calendar"></use></svg>De jueves a lunes, en torno al 14 de mayo · Sant Bonifaci</div>
+          <h1>Moros Beduinos</h1>
+          <p class="hero-sub">Comparsa de Petrer desde 1963 · Fiestas de Moros y Cristianos</p>
           <div class="hero-actions">
             <a class="btn btn-solid" href="#calendario">Ver el calendario</a>
             <a class="btn btn-ghost" href="#mercadillo">Mercadillo de trajes</a>
@@ -506,6 +504,10 @@
     <svg class="wave-divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0 30 Q150 8 300 26 T600 22 T900 30 T1200 18 V44 H0 Z" fill="currentColor"/>
     </svg>
+    <div class="wrap intro">
+      <p class="lede">Hijos del desierto y de la caravana. Cada fiesta vestimos de azul, rojo y blanco para recorrer las calles de Petrer con el mismo orgullo transhumante que llevamos en el escudo.</p>
+      <p class="intro-dates"><svg aria-hidden="true"><use href="#icon-calendar"></use></svg>De jueves a lunes, en torno al 14 de mayo · Sant Bonifaci</p>
+    </div>
   </section>
 
   <section id="historia" class="has-band">
@@ -519,20 +521,12 @@
       <div class="historia-grid">
         <div>
           <p>Nacimos con la vocación de traer al desfile algo distinto: el espíritu del beduino, el pueblo que nunca echó raíces porque su casa era el camino. Cada filà que forma la comparsa recuerda a su manera esa vida transhumante — el campamento que se levanta y se recoge, la ruta que se conoce de memoria, la lealtad a quienes comparten tienda.</p>
-          <p>Con los años, esa idea se ha ido bordando literalmente en nuestro traje de guerrilla y en el escudo que llevamos al pecho: azul de la noche del desierto, rojo de la arena al atardecer, blanco de las jaimas y las telas que nos visten. Hoy somos familias enteras — de la escuadra infantil a quienes llevan medio siglo desfilando — que cada año vuelven a levantar el campamento en Petrer.</p>
+          <p>Con los años, esa idea se ha ido bordando literalmente en nuestro traje de guerrilla y en el escudo que llevamos al pecho: azul de la noche del desierto, rojo de la arena al atardecer, blanco de las jaimas y las telas que nos visten. Hoy somos familias enteras — de la filà infantil a quienes llevan medio siglo desfilando — que cada año vuelven a levantar el campamento en Petrer.</p>
         </div>
-        <div class="historia-figure">
-          <svg viewBox="0 0 260 200" aria-hidden="true">
-            <circle cx="130" cy="100" r="66" fill="none" stroke="var(--blue)" stroke-width="1.2" opacity=".4"/>
-            <g transform="translate(130,100)">
-              <path d="M12 -50a12 12 0 1 0 0 24 14.4 14.4 0 1 1 0-24Z" fill="var(--blue)" transform="translate(-30,20) scale(2.1)"/>
-              <g transform="translate(10,26)" stroke="var(--red)" stroke-width="3" fill="none" stroke-linecap="round">
-                <path d="M-38 20h76M-38 20l14 -30M38 20l-14 -30M-24 -10h48"/>
-              </g>
-            </g>
-          </svg>
-          <p class="cap">Creciente y jaima: el emblema de la comparsa.</p>
-        </div>
+        <figure class="historia-figure">
+          <img src="images/escudo.webp" width="300" height="409" loading="lazy" alt="Escudo de la comparsa: media luna dorada y halcón blanco con tres estrellas sobre fondo azul, ribete rojo, cúpula y la inscripción Petrel 1963.">
+          <figcaption class="cap">El escudo de la comparsa, desde 1963.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -716,7 +710,7 @@
 
 <footer>
   <div class="wrap footer-row">
-    <div class="footer-brand"><svg><use href="#emblem"></use></svg>Comparsa Moros Beduinos de Petrer</div>
+    <div class="footer-brand"><img src="images/escudo-112.png" alt="" width="20" height="28" loading="lazy">Comparsa Moros Beduinos Petrer · desde 1963</div>
     <span>Fiestas de Moros y Cristianos de Petrer</span>
   </div>
 </footer>
@@ -840,10 +834,13 @@
 
   /* ---- Imágenes dinámicas de portada y bandas ----
      Las fotos van en la carpeta images/. Cada entrada puede ser
-     "images/portada/1.jpg" o { src: "images/portada/1.jpg", alt: "Descripción" }.
+     "images/portada/1.jpg" o { src: "images/portada/1.jpg", alt: "Descripción", pos: "50% 80%" }.
+     pos es el encuadre (horizontal vertical): sube el segundo número para enseñar más la parte de abajo.
      Mientras una lista esté vacía se muestran luces de degradado provisionales. */
   var IMAGENES = {
-    portada: [],
+    portada: [
+      { src: "images/portada/desfile-1.webp", alt: "Desfile de la comparsa por una calle de Petrer: hileras de festeros con trajes negros bordados en oro y el público a ambos lados.", pos: "50% 90%" }
+    ],
     historia: [],
     patron: [],
     filaes: [],
@@ -872,6 +869,7 @@
         img.src = typeof f === 'string' ? f : f.src;
         img.alt = typeof f === 'string' ? '' : (f.alt || '');
         img.decoding = 'async';
+        if (f.pos) img.style.objectPosition = f.pos;
         if (clave === 'portada' && k === 0) img.setAttribute('fetchpriority', 'high');
         else img.loading = 'lazy';
         contenedor.appendChild(img);
@@ -887,6 +885,7 @@
       contenedor.setAttribute('aria-hidden', 'true');
     }
     show.items[0].classList.add('is-active');
+    if (show.items.length === 1) show.items[0].classList.add('is-solo');
     show.items.forEach(function(it){
       it.addEventListener('animationend', function(e){
         if (e.animationName !== 'caravana' || it !== show.items[show.i] || menosMovimiento.matches) return;
