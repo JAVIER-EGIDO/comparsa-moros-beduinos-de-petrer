@@ -10,51 +10,26 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
 
+  /* Un solo mundo visual: el azul del escudo, oscurecido, con dorado y crema. */
   :root{
-    --sand:#EFE2C6;
-    --sand-2:#E1CFA3;
-    --sand-3:#D6BE8B;
-    --ink:#251E13;
-    --ink-soft:#5C4F38;
-    --blue:#1B3A66;
-    --blue-deep:#122A4C;
-    --red:#8F2626;
-    --red-deep:#7C2020;
-    --linen:#FBF5E6;
+    color-scheme:dark;
+    --sand:#0A1A33;
+    --sand-2:#10264A;
+    --sand-3:#16305A;
+    --ink:#F3EBD8;
+    --ink-soft:#B9C3D6;
+    --blue:#86ADEB;
+    --blue-deep:#1E4E9A;
+    --red:#E8796C;
+    --red-deep:#A3262A;
+    --gold:#D9B45A;
+    --linen:#12294F;
     --on-dark:#FBF5E6;
-    --border:rgba(37,30,19,.16);
-    --shadow:rgba(37,30,19,.24);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --sand:#16110A;
-      --sand-2:#221A10;
-      --sand-3:#2E2415;
-      --ink:#F3E7CC;
-      --ink-soft:#C9B98F;
-      --blue:#5580BD;
-      --blue-deep:#3D628F;
-      --red:#DD7369;
-      --red-deep:#B04C46;
-      --linen:#241C11;
-      --border:rgba(243,231,204,.16);
-      --shadow:rgba(0,0,0,.5);
-    }
-  }
-  :root[data-theme="dark"]{
-    --sand:#16110A;
-    --sand-2:#221A10;
-    --sand-3:#2E2415;
-    --ink:#F3E7CC;
-    --ink-soft:#C9B98F;
-    --blue:#5580BD;
-    --blue-deep:#3D628F;
-    --red:#DD7369;
-    --red-deep:#B04C46;
-    --linen:#241C11;
-    --border:rgba(243,231,204,.16);
+    --border:rgba(243,235,216,.14);
     --shadow:rgba(0,0,0,.5);
   }
+  ::selection{ background:var(--gold); color:#0A1A33; }
+  html{ scrollbar-color:#2A4675 var(--sand); }
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth; scroll-padding-top:72px;}
@@ -90,7 +65,7 @@
     color:var(--ink);
     font-weight:600;
   }
-  h2{font-size:clamp(1.7rem, 1.2rem + 2vw, 2.5rem); letter-spacing:.005em;}
+  h2{font-size:clamp(1.7rem, 1.2rem + 2vw, 2.5rem); letter-spacing:.005em; color:var(--gold);}
   h3{font-size:1.12rem; font-weight:600;}
   p{margin:0;}
   .lede{max-width:62ch;}
@@ -233,15 +208,15 @@
     display:flex; align-items:flex-end;
     color:var(--on-dark);
   }
-  .hero-content{ position:relative; z-index:2; width:100%; padding-bottom:64px; }
+  .hero-content{ position:relative; z-index:2; width:100%; padding-bottom:96px; }
   .hero h1{
     color:var(--on-dark); font-size:clamp(3rem, 1.6rem + 6vw, 6rem);
     line-height:.95; letter-spacing:-.025em;
     text-shadow:0 2px 30px rgba(0,0,0,.3);
   }
-  .hero-sub{ margin-top:.55em; font-weight:600; font-size:1.05rem; letter-spacing:.01em; color:#E9C888; }
+  .hero-sub{ margin-top:.55em; font-weight:600; font-size:1.05rem; letter-spacing:.01em; color:var(--gold); }
 
-  .slide-controls{ position:absolute; z-index:3; right:20px; bottom:26px; display:flex; align-items:center; gap:12px; }
+  .slide-controls{ position:absolute; z-index:4; right:20px; bottom:64px; display:flex; align-items:center; gap:12px; }
   .slide-controls[hidden]{ display:none; }
   .dots{ display:flex; gap:4px; }
   .dot{ position:relative; width:44px; height:32px; padding:0; border:0; background:none; cursor:pointer; }
@@ -276,10 +251,24 @@
   }
   section.has-band{ padding-top:0; border-top:none; }
 
+  /* Ventanas: la foto queda fija a la pantalla y el bloque se desplaza por encima.
+     clip-path recorta la capa fija al hueco del bloque. A diferencia de
+     background-attachment:fixed, esto también funciona en el Safari del iPhone. */
+  .hero, .band{ clip-path:inset(0); }
+  .hero .slides, .band .slides{ position:fixed; top:0; right:0; bottom:auto; left:0; height:100vh; height:100lvh; }
+  .band .overlay-inner{ padding-bottom:96px; }
+
+  .onda{ position:absolute; left:0; z-index:3; display:block; width:100%; height:56px; pointer-events:none; }
+  .onda-arriba{ top:-1px; }
+  .onda-abajo{ bottom:-1px; transform:scaleY(-1); }
+  .onda path{ fill:var(--sand); }
+  .onda .onda-acento{ fill:var(--blue-deep); opacity:.9; }
+
   @media (prefers-reduced-motion: reduce){
     .slide.is-active, .slide.is-solo.is-active{ animation:none; }
     .dot.is-active .dot-fill{ animation:none; transform:scaleX(1); }
     .slide-pause{ display:none; }
+    .hero .slides, .band .slides{ position:absolute; inset:0; height:auto; }
   }
   .intro{ display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:24px 56px; align-items:end; padding-block:40px 64px; }
   .intro .lede{ font-family:'Fraunces', Georgia, serif; font-size:clamp(1.25rem, 1rem + 1vw, 1.6rem); line-height:1.4; color:var(--ink); max-width:38ch; }
@@ -294,11 +283,10 @@
     .slide-controls{ top:16px; bottom:auto; right:12px; }
     .hero-content{ padding-bottom:44px; }
     .band{ height:62vh; min-height:360px; margin-bottom:40px; }
-    .band .overlay-inner{ padding-bottom:32px; }
+    .band .overlay-inner{ padding-bottom:72px; }
+    .onda{ height:36px; }
   }
 
-  /* wave divider */
-  .wave-divider{ display:block; width:100%; height:44px; margin-top:-2px; position:relative; z-index:3; color:var(--sand); }
 
   /* ---------- section shell ---------- */
   section{ padding-block:74px; border-top:1px solid var(--border); }
@@ -383,17 +371,16 @@
   /* ---------- mercadillo ---------- */
   .mercadillo{ background:linear-gradient(135deg, var(--blue-deep), var(--red-deep)); border-radius:8px; color:var(--on-dark); border-top:none; }
   .mercadillo-inner{ padding:52px 40px; }
-  .mercadillo .eyebrow{ color:#E9C888; }
   .mercadillo h2{ color:var(--on-dark); }
   .mercadillo-lede{ color:var(--on-dark); margin-top:.8em; max-width:60ch; }
   .steps{ list-style:none; margin:2.2em 0 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; counter-reset:step; }
   .steps li{ counter-increment:step; background:rgba(251,245,230,.08); border:1px solid rgba(251,245,230,.22); border-radius:6px; padding:20px; }
-  .steps li::before{ content:counter(step); font-family:'Fraunces',serif; font-weight:600; font-size:1.6rem; color:#E9C888; display:block; margin-bottom:.4em; }
+  .steps li::before{ content:counter(step); font-family:'Fraunces',serif; font-weight:600; font-size:1.6rem; color:var(--gold); display:block; margin-bottom:.4em; }
   .steps h3{ color:var(--on-dark); font-size:.98rem; }
   .steps p{ color:var(--on-dark); font-size:.86rem; margin-top:.4em; }
   .mercadillo-actions{ margin-top:2em; display:flex; gap:14px; flex-wrap:wrap; }
   .trajes-grid{ margin-top:2.6em; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-  .traje-card{ background:var(--linen); color:var(--ink); border-radius:6px; padding:18px 20px; border:1px solid rgba(37,30,19,.1); }
+  .traje-card{ background:var(--linen); color:var(--ink); border-radius:6px; padding:18px 20px; border:1px solid var(--border); }
   .traje-card h3{ font-size:1rem; color:var(--ink); }
   .traje-tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:.6em; }
   .traje-tag{ font-family:'Oswald',sans-serif; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; padding:.3em .7em; border-radius:2px; background:color-mix(in srgb, var(--blue) 12%, var(--linen)); color:var(--blue); }
@@ -500,10 +487,8 @@
         <div class="dots" role="group" aria-label="Imágenes de portada"></div>
         <button class="slide-pause" type="button">Pausar</button>
       </div>
+      <svg class="onda onda-abajo" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
     </div>
-    <svg class="wave-divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 30 Q150 8 300 26 T600 22 T900 30 T1200 18 V44 H0 Z" fill="currentColor"/>
-    </svg>
     <div class="wrap intro">
       <p class="lede">Hijos del desierto y de la caravana. Cada fiesta vestimos de azul, rojo y blanco para recorrer las calles de Petrer con el mismo orgullo transhumante que llevamos en el escudo.</p>
       <p class="intro-dates"><svg aria-hidden="true"><use href="#icon-calendar"></use></svg>De jueves a lunes, en torno al 14 de mayo · Sant Bonifaci</p>
@@ -512,10 +497,12 @@
 
   <section id="historia" class="has-band">
     <div class="band">
+      <svg class="onda onda-arriba" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
       <div class="slides" data-slides="historia"></div>
       <div class="glow" aria-hidden="true"></div>
       <div class="scrim" aria-hidden="true"></div>
       <div class="overlay-inner"><h2 class="band-title">De caravana a comparsa</h2></div>
+      <svg class="onda onda-abajo" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
     </div>
     <div class="wrap">
       <div class="historia-grid">
@@ -533,10 +520,12 @@
 
   <section id="patron" class="has-band">
     <div class="band">
+      <svg class="onda onda-arriba" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
       <div class="slides" data-slides="patron"></div>
       <div class="glow" aria-hidden="true"></div>
       <div class="scrim" aria-hidden="true"></div>
       <div class="overlay-inner"><h2 class="band-title">Nuestro Patrón</h2></div>
+      <svg class="onda onda-abajo" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
     </div>
     <div class="wrap">
       <div class="patron-panel">
@@ -572,10 +561,12 @@
 
   <section id="filaes" class="has-band">
     <div class="band">
+      <svg class="onda onda-arriba" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
       <div class="slides" data-slides="filaes"></div>
       <div class="glow" aria-hidden="true"></div>
       <div class="scrim" aria-hidden="true"></div>
       <div class="overlay-inner"><h2 class="band-title">Nuestras filaes</h2></div>
+      <svg class="onda onda-abajo" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
     </div>
     <div class="wrap">
       <div class="card-grid">
@@ -601,10 +592,12 @@
 
   <section id="calendario" class="has-band">
     <div class="band">
+      <svg class="onda onda-arriba" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
       <div class="slides" data-slides="calendario"></div>
       <div class="glow" aria-hidden="true"></div>
       <div class="scrim" aria-hidden="true"></div>
       <div class="overlay-inner"><h2 class="band-title">Actos y desfiles, día a día</h2></div>
+      <svg class="onda onda-abajo" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path class="onda-acento" d="M0 0H1200V30Q1050 54 900 34T600 38T300 30T0 44Z"/><path d="M0 0H1200V18Q1050 42 900 22T600 26T300 18T0 32Z"/></svg>
     </div>
     <div class="wrap">
       <ol class="programa-list">
